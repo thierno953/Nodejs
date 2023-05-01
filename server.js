@@ -12,11 +12,12 @@ import connectDB from "./config/db.js";
 //routes import
 import authRoutes from "./routes/authRoutes.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
+import userRoutes from "./routes/userRoutes.js";
 
 //Dot ENV config
 dotenv.config();
 
-//mongodb connection 
+//mongodb connection  
 connectDB();
 
 //rest object
@@ -34,6 +35,7 @@ app.use(morgan("dev"));
 
 //routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user", userRoutes);
 
 //validation middleware
 app.use(errorMiddleware);

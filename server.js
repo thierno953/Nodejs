@@ -4,7 +4,7 @@ import "express-async-errors";
 import dotenv from "dotenv";
 import colors from "colors";
 import cors from "cors";
-import morgan from "morgan";
+import morgan from "morgan"; 
 
 // API DOcumenATion
 import swaggerUi from "swagger-ui-express";

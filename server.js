@@ -6,6 +6,10 @@ import colors from "colors";
 import cors from "cors";
 import morgan from "morgan";
 
+// API DOcumenATion
+import swaggerUi from "swagger-ui-express";
+import swaggerDoc from "swagger-jsdoc";
+
 //securty packages
 import helmet from "helmet";
 import xss from "xss-clean";
@@ -29,6 +33,26 @@ connectDB();
 //rest object
 const app = express();
 
+// Swagger api config
+// swagger api options
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Job Application",
+      description: "Node Expressjs Job Application",
+    },
+    servers: [
+      {
+        url: "http://localhost:4000",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"],
+};
+
+const spec = swaggerDoc(options);
+
 //middelwares
 app.use(helmet(``));
 app.use(xss());
@@ -45,6 +69,9 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/job", jobsRoutes);
+
+//homeroute root
+app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(spec));
 
 //validation middleware
 app.use(errorMiddleware);

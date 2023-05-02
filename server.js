@@ -44,7 +44,8 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:4000",
+       // url: "http://localhost:4000",
+        url: "https://nodejs-t7ka.onrender.com"
       },
     ],
   },
